@@ -17,12 +17,12 @@ from .endpoints import (
 from .errors import ApiError
 
 __all__ = [
-    "ApiError",
-    "ClawTalkClient",
     "ENDPOINTS",
-    "Endpoint",
     "IMPLEMENTED_ENDPOINTS",
     "READ_ENDPOINTS",
     "UNIMPLEMENTED_ENDPOINTS",
+    "ApiError",
+    "ClawTalkClient",
+    "Endpoint",
     "resolve",
 ]

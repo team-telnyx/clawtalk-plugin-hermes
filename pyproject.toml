@@ -1,10 +1,15 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "clawtalk-hermes"
 version = "0.1.0"
 description = "ClawTalk for Hermes Agent - voice calls, SMS, missions, and push approvals"
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "Telnyx" }]
 keywords = ["hermes", "hermes-agent", "clawtalk", "telnyx", "voice", "sms"]
 
@@ -13,18 +18,25 @@ keywords = ["hermes", "hermes-agent", "clawtalk", "telnyx", "voice", "sms"]
 dependencies = ["aiohttp>=3.9"]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0", "pytest-asyncio>=0.23", "ruff>=0.6"]
+# ruff is pinned to a minor range on purpose: new lint rules ship in minor
+# releases, and an unpinned linter turns a green CI red on an unrelated day.
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23", "ruff>=0.16,<0.17"]
 
 [project.urls]
 Homepage = "https://www.clawdtalk.com/"
 Repository = "https://github.com/team-telnyx/clawtalk-plugin-hermes"
 Upstream = "https://github.com/team-telnyx/clawtalk-plugin"
 
-# This repo IS the plugin directory: Hermes loads it by folder name from
-# ~/.hermes/plugins/clawtalk. Packaging metadata exists for dev tooling and
-# for the optional pip entry-point install path.
-[project.entry-points."hermes_agent.plugins"]
-clawtalk = "clawtalk"
+# This repo IS the plugin directory, not a distributable package: Hermes loads
+# it by folder name from ~/.hermes/plugins/clawtalk, and its own subpackages
+# (sdk, services, tools) sit at the repo root. Building nothing is therefore
+# the correct answer - setuptools would otherwise try to publish those
+# subpackages as three unrelated top-level distributions.
+#
+# `pip install -e .` still works and is what CI and the Makefile use: it
+# installs the dependencies below and nothing else.
+[tool.setuptools]
+packages = []
 
 [tool.ruff]
 line-length = 100

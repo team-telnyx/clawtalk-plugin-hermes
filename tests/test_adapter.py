@@ -13,9 +13,9 @@ import pytest
 
 pytest.importorskip("gateway.platforms.base", reason="requires a Hermes checkout on sys.path")
 
-from gateway.config import PlatformConfig  # noqa: E402
+from gateway.config import PlatformConfig
 
-from clawtalk import register, wire  # noqa: E402
+from clawtalk import register, wire
 
 
 class FakeCtx:

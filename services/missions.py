@@ -31,9 +31,9 @@ from ..sdk import ClawTalkClient
 
 __all__ = [
     "EVENT_TYPES",
-    "MissionService",
     "STEP_STATUSES",
     "TERMINAL_STEP_STATUSES",
+    "MissionService",
 ]
 
 logger = logging.getLogger(__name__)

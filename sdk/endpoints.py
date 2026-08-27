@@ -27,10 +27,10 @@ from urllib.parse import quote
 
 __all__ = [
     "ENDPOINTS",
-    "Endpoint",
     "IMPLEMENTED_ENDPOINTS",
     "READ_ENDPOINTS",
     "UNIMPLEMENTED_ENDPOINTS",
+    "Endpoint",
     "resolve",
 ]
 
